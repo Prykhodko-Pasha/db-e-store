@@ -49,13 +49,12 @@ model Order {
 }
 
 model Product {
-  product_id     Int       @id @default(autoincrement())
-  name           String
-  description    String?
-  stock_quantity Int
-  category       Category  @relation(fields: [category_id], references: [category_id])
-  category_id    Int
-  variants       Variant[]
+  product_id  Int       @id @default(autoincrement())
+  name        String
+  description String?
+  category    Category  @relation(fields: [category_id], references: [category_id])
+  category_id Int
+  variants    Variant[]
 }
 
 model Category {
@@ -95,6 +94,7 @@ model Variant {
   key             String
   value           String
   price           Decimal
+  stock_quantity  Int
   product         Product         @relation(fields: [product_id], references: [product_id])
   product_id      Int
   order_items     OrderItem[]
